@@ -1,13 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iot_test_app/core/Service/mqtt_service.dart';
 import 'package:iot_test_app/cubits/cubit/living_room_cubit.dart';
 import 'package:iot_test_app/model/rooms_model.dart';
 import 'package:iot_test_app/screens/living_room.dart';
-import 'package:mqtt_client/mqtt_server_client.dart';
 
-class HomeScreen extends StatelessWidget {
-  final MqttServerClient client;
-  const HomeScreen({super.key, required this.client});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  @override
+  void initState() {
+    super.initState();
+    _initMqtt();
+  }
+
+  Future<void> _initMqtt() async {
+    await MqttService().init();
+    setState(() {}); 
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +58,11 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildRoomItemWidget(int index, context) {
     return GestureDetector(
-  
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => LivingRoomCubit(client),
+            create: (context) => LivingRoomCubit(MqttService().client),
             child: LivingRoom(roomImage: RoomsModel.rooms[index].image),
           ),
         ),

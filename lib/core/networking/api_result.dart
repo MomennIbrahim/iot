@@ -1,20 +1,13 @@
-import 'package:iot_test_app/core/error/error.dart';
+class ApiResult<T> {
+  final T? data;
+  final String? error;
 
-/// Base class for API results
-abstract class ApiResult<T> {
-  const ApiResult();
-}
+  ApiResult._({this.data, this.error});
 
-/// Success case
-class Success<T> extends ApiResult<T> {
-  final T data;
+  factory ApiResult.success(T data) => ApiResult._(data: data);
 
-  const Success(this.data);
-}
+  factory ApiResult.failure(String error) => ApiResult._(error: error);
 
-
-class Failure<T> extends ApiResult<T> {
-  final RemoteServerFailure error;
-
-  const Failure(this.error);
+  bool get isSuccess => data != null && error == null;
+  bool get isFailure => error != null;
 }

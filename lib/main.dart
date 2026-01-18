@@ -1,16 +1,19 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iot_test_app/core/di/di.dart';
+import 'package:iot_test_app/core/helpers/observe.dart';
+import 'package:iot_test_app/core/local_storage/secure_storage.dart';
 import 'package:iot_test_app/smart_home.dart';
-import 'package:mqtt_client/mqtt_server_client.dart';
 
 void main() async {
-  MqttServerClient client = MqttServerClient.withPort(
-    'broker.hivemq.com',
-    'clientIdentifier',
-    1883,
-  );
-  client.connect();
+  Bloc.observer = MyBlocObserver();
   await ScreenUtil.ensureScreenSize();
+  WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(SmartHome(mqttClient: client));
+  SecureCache.secureCacheInit();
+
+  setupServiceLocator();
+
+  runApp(SmartHome());
 }

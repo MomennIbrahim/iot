@@ -3,11 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iot_test_app/core/routing/app_router.dart';
 import 'package:iot_test_app/core/routing/routes.dart';
 
-import 'package:mqtt_client/mqtt_server_client.dart';
-
 class SmartHome extends StatelessWidget {
-  final MqttServerClient mqttClient;
-  const SmartHome({super.key, required this.mqttClient});
+  const SmartHome({super.key});
 
   @override
   Widget build(BuildContext context) {
