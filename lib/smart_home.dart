@@ -21,7 +21,7 @@ class SmartHome extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        initialRoute: Routes.splashScreen,
+        initialRoute: Routes.onBoardingScreen,
         onGenerateRoute: AppRouter.generateRoute,
       ),
     );

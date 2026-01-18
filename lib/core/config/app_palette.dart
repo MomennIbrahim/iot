@@ -4,7 +4,7 @@ class AppPalette {
   // primary
   static const background = Color(0xFFFFFFFF);
   static const foreground = Color.fromARGB(255, 235, 235, 235);
-  static const primary = Color(0xFF003F97);
+  static const primaryColor = Color(0xFF003F97);
   static const primaryLight = Color(0XFF007EFF);
   static const primaryLighter = Color(0XFF8AD4FF);
   static const whiteColor = Color(0xFFFFFFFF);
@@ -16,7 +16,7 @@ class AppPalette {
   static const lightGrey = Color(0xFFF0EEED);
 
   // Text
-  static const textPrimary = primary;
+  static const textPrimary = primaryColor;
   static const textPrimaryLight = primaryLight;
   static const textLightBlue = primaryLighter;
   static const textGrey = Color(0xFF8C8C8C);
